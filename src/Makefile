@@ -19,16 +19,17 @@ create-resourcegroup: ## create resource group ## make create-resourcegroup
 
 
 create-acr: ## create azure container registry ## create-acr
-	az acr create -n $(ACR_NAME) -g $(RESOURCE_GROUP) --sku Standard
+	az acr create --name $(ACR_NAME) --resource-group $(RESOURCE_GROUP) --sku Standard --admin-enabled true
 
 
 push-image: ## build and push image to ACR ## make push-image
-	az acr build -t sample/demo -r $(ACR_NAME) .
+	az acr build --image $(IMAGE_NAME) --registry $(ACR_NAME) .
 
 
 create-appserviceplan: ## create app service plan ## make create-appserviceplan
 	az appservice plan create --resource-group $(RESOURCE_GROUP) --name $(APP_SERVICE_PLANE) \
 	    --is-linux --number-of-workers 1 --sku P1V2
+
 
 create-webapps: ## create web apps from custom image ## make create-appserviceplan
 	az webapp create --name streamlitdemowebapps --plan $(APP_SERVICE_PLANE) --resource-group $(RESOURCE_GROUP) \
