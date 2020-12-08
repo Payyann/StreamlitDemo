@@ -31,8 +31,8 @@ create-appserviceplan: ## create app service plan ## make create-appserviceplan
 	    --is-linux --number-of-workers 1 --sku P1V2
 
 create-webapps: ## create web apps from custom image ## make create-appserviceplan
-	az webapp create --name streamlitdemo --plan $(APP_SERVICE_PLANE) --resource-group $(RESOURCE_GROUP) \
-		--deployment-container-image-name]
+	az webapp create --name streamlitdemowebapps --plan $(APP_SERVICE_PLANE) --resource-group $(RESOURCE_GROUP) \
+		--deployment-container-image-name $(ACR_NAME).azurecr.io/$(IMAGE_NAME)
 
 clear: ## clear Azure resource # make clear
 	az group delete --name $(RESOURCE_GROUP)
