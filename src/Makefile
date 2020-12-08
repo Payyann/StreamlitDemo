@@ -1,6 +1,7 @@
 RESOURCE_GROUP := streamlit-demo
-ACR_NAME := demoregistry
+ACR_NAME := streamlitdemowebapps
 APP_SERVICE_PLANE := demoappserviceplan
+IMAGE_NAME := sample/demo
 
 help: ## print this message
 	@echo "Example operations by makefile."
