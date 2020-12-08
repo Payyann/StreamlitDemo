@@ -28,7 +28,7 @@ push-image: ## build and push image to ACR ## make push-image
 
 create-appserviceplan: ## create app service plan ## make create-appserviceplan
 	az appservice plan create --resource-group $(RESOURCE_GROUP) --name $(APP_SERVICE_PLANE) \
-	    --is-linux --number-of-workers 1 --sku F1
+	    --is-linux --number-of-workers 1 --sku P1V2
 
 create-webapps: ## create web apps from custom image ## make create-appserviceplan
 	az webapp create --name streamlitdemo --plan $(APP_SERVICE_PLANE) --resource-group $(RESOURCE_GROUP) \
